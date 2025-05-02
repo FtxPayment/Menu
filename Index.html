@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu Utama Crypto</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .card {
+      background: rgba(30, 30, 50, 0.85);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      transition: transform 0.3s ease;
+      z-index: 10;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    h2 {
+      font-size: 36px;
+      color: #00ffc3;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+    .menu-button {
+      background: linear-gradient(90deg, #00e0ff, #00ffc3);
+      color: #000;
+      font-weight: bold;
+      padding: 15px 30px;
+      margin: 15px 0;
+      border-radius: 50px;
+      width: 250px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    .menu-button:hover {
+      background: linear-gradient(90deg, #00ffc3, #00e0ff);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    .menu-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .menu-button:focus {
+      outline: none;
+    }
+
+    /* Tooltip */
+    .menu-button:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00ffc3;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* Animasi koin crypto */
+    .coin {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      font-size: 24px;
+      color: gold;
+      animation: fall 5s linear infinite;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 20; /* Menambahkan z-index agar koin berada di depan */
+    }
+
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Menu Utama Crypto</h2>
+    <nav>
+      <button class="menu-button" data-tooltip="Gadai crypto dengan bunga rendah" onclick="location.href='#gadai'">Gadai Crypto</button>
+      <button class="menu-button" data-tooltip="Bayar pinjaman crypto Anda" onclick="location.href='#bayar'">Bayar Pinjaman</button>
+      <button class="menu-button" data-tooltip="Beli berbagai jenis crypto" onclick="location.href='#beli'">Beli Crypto</button>
+      <button class="menu-button" data-tooltip="Jual crypto Anda di platform ini" onclick="location.href='#jual'">Jual Crypto</button>
+      <button class="menu-button" data-tooltip="Gabung dengan program affiliate" onclick="location.href='#affiliate'">Join Affiliate</button>
+      <button class="menu-button" data-tooltip="Daftar sebagai mitra crypto" onclick="location.href='#mitra'">Daftar Mitra</button>
+    </nav>
+  </div>
+
+  <!-- Koin crypto yang jatuh -->
+  <script>
+    function createCoin() {
+      const coin = document.createElement('div');
+      coin.classList.add('coin');
+      coin.innerText = '₿'; // Simbol Bitcoin atau bisa menggunakan simbol lain
+
+      // Posisi acak untuk koin
+      const randomLeft = Math.random() * 100;
+      coin.style.left = `${randomLeft}vw`;
+      
+      document.body.appendChild(coin);
+
+      // Hapus koin setelah animasi selesai
+      coin.addEventListener('animationend', () => {
+        coin.remove();
+      });
+    }
+
+    // Mengurangi frekuensi pembuatan koin menjadi setiap 2 detik
+    setInterval(createCoin, 2000);
+  </script>
+
+</body>
+</html>
